@@ -1,0 +1,76 @@
+🔹 What are call and apply?
+
+Both are methods available on functions in JavaScript.
+They are used to invoke a function immediately while explicitly setting the value of this.
+
+
+---
+
+🔹 Syntax
+
+func.call(thisArg, arg1, arg2, ...);
+func.apply(thisArg, [arg1, arg2, ...]);
+
+thisArg → the value you want to use as this inside the function.
+
+Arguments →
+
+call takes them individually (comma-separated).
+
+apply takes them as an array.
+
+
+
+
+---
+
+🔹 Example 1: Using call
+
+function greet(greeting, punctuation) {
+  console.log(greeting + ", " + this.name + punctuation);
+}
+
+const person = { name: "Praptee" };
+
+greet.call(person, "Hello", "!"); 
+// Output: Hello, Praptee!
+
+Here, this becomes person.
+
+
+---
+
+🔹 Example 2: Using apply
+
+function greet(greeting, punctuation) {
+  console.log(greeting + ", " + this.name + punctuation);
+}
+
+const person = { name: "Miller" };
+
+greet.apply(person, ["Hi", "!!"]);  
+// Output: Hi, Miller!!
+
+Notice that with apply, arguments are passed in an array.
+
+
+---
+
+🔹 Example 3: Finding Max with apply
+
+const numbers = [1, 5, 7, 2, 9];
+
+const max = Math.max.apply(null, numbers);  
+console.log(max); // 9
+
+✅ Here thisArg is null because Math.max doesn’t need a this.
+
+
+---
+
+🔹 Difference Between call and apply
+
+Feature	call	apply
+
+Arguments	Passed individually	Passed as an array
+Usage	Function borrowing, explicit this binding	Useful when args are already in an array
